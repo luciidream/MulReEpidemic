@@ -51,7 +51,7 @@ if __name__ == '__main__':
     relations = np.random.uniform(0, 1, (N, N))
     # initiate bias matrix N*M dimension
     bias = generate_row_normalized_matrix(N, M)
-    num_steps = 5
+    num_steps = 50
     trajectories = brw.generate_trajectories(N, agents_network, sites_network,
                                              bias, relations, transfer_matrix, num_steps)
     # ----------------------------------------Epidemic model----------------------------------------
@@ -77,6 +77,6 @@ if __name__ == '__main__':
     # np.save("lambda_M.npy", lambda_M)
     # ----------------------------------------SI Transmission----------------------------------------
     # a dictionary --- time —————— agents infected
-    infected_agent = tp.si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N, 10, num_steps)
+    infected_agent = tp.si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N, 1, num_steps)
 
 

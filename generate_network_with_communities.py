@@ -41,7 +41,8 @@ def generate_community_network(num_communities, community_sizes):
     # Generate intra-community edges
     communities = []
     for i in range(num_communities):
-        community = nx.erdos_renyi_graph(community_sizes[i], 0.5)
+        community = nx.erdos_renyi_graph(community_sizes[i], 0.1)
+        # community = nx.scale_free_graph(community_sizes[i])
         communities.append(community)
         G = nx.disjoint_union(G, community)
 
