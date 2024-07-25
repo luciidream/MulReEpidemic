@@ -7,7 +7,7 @@ if __name__ == '__main__':
 
     num_communities = 8
     community_sizes = [5, 6, 7, 8, 9, 10, 11, 12]
-    G = nwc.generate_community_network(num_communities, community_sizes)
+    G = nwc.generate_community_network(num_communities, community_sizes, 0.01)
 
     # Visualize the network
     nwc.visualize_network(G, num_communities, community_sizes)

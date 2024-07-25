@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # ---------------------------Initiation and Generation of Trajectories---------------------------
     # N --- number of agents
     N = 2000
-    M = 10
+    M = 50
     # M --- number of sites
     # generate synthetic sites network
     # sites_network = nx.scale_free_graph(M)
@@ -45,13 +45,13 @@ if __name__ == '__main__':
     num_communities = 10
     community_size = [int(N / 10)] * num_communities
     # community size should later be set heterogeneous
-    agents_network = gnwc.generate_community_network(num_communities, community_size)
+    agents_network = gnwc.generate_community_network(num_communities, community_size, 0.025)
     # gnwc.visualize_community_network(agents_network, num_communities, community_size)
     # relations between agents in social network
     relations = np.random.uniform(0, 1, (N, N))
     # initiate bias matrix N*M dimension
     bias = generate_row_normalized_matrix(N, M)
-    num_steps = 50
+    num_steps = 200
     trajectories = brw.generate_trajectories(N, agents_network, sites_network,
                                              bias, relations, transfer_matrix, num_steps)
     # ----------------------------------------Epidemic model----------------------------------------
@@ -73,10 +73,13 @@ if __name__ == '__main__':
     q_t = row_normalize(test[1])
     risk_t = row_normalize(test[2])
 
-    # lambda_M = km.largest_eigenvalue(beta, gamma, trajectories, M, num_steps)
-    # np.save("lambda_M.npy", lambda_M)
+    lambda_M = km.largest_eigenvalue(beta, gamma, trajectories, M, num_steps)
+    np.save("lambda_M.npy", lambda_M)
     # ----------------------------------------SI Transmission----------------------------------------
     # a dictionary --- time —————— agents infected
-    infected_agent = tp.si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N, 1, num_steps)
+    recovery_rate = 0.02
+    infected_agent = tp.si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N,
+                                                recovery_rate, 20, num_steps)
+    np.save("infected_agent.npy", infected_agent)
 
 

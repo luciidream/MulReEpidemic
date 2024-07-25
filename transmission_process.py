@@ -1,13 +1,15 @@
 import numpy as np
 
 
-def si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N, initial_seed, num_steps):
+def si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N, recovery_rate, initial_seed, num_steps):
     agents = np.linspace(0, N - 1, N)
     agents = agents.astype(np.int64)
     infected_agent = {0: np.random.choice(agents, initial_seed, replace=False)}
     for t in range(1, num_steps):
         agents_location = trajectories[:, t]
         infected_agent_till_t = infected_agent[t - 1]
+        infected_agent_till_t = infected_agent_till_t[recovery_rate <=
+                                                      np.random.uniform(0, 1, len(infected_agent_till_t))]
         print("Transmission at " + str(t) + " Infected agent: " + str(len(infected_agent_till_t)) + " / " + str(N))
         if len(infected_agent_till_t) == N:
             print("*****WASTED*****")
