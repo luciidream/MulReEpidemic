@@ -46,7 +46,6 @@ if __name__ == '__main__':
     community_size = [int(N / 10)] * num_communities
     # community size should later be set heterogeneous
     agents_network = gnwc.generate_community_network(num_communities, community_size, 0.025)
-    # gnwc.visualize_community_network(agents_network, num_communities, community_size)
     # relations between agents in social network
     relations = np.random.uniform(0, 1, (N, N))
     # initiate bias matrix N*M dimension

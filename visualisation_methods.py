@@ -4,8 +4,7 @@ import seaborn as sns
 
 
 def lambda_curve(lambda_M, num_steps):
-
-    x = np.linspace(1, num_steps-1, num_steps-1)
+    x = np.linspace(1, num_steps - 1, num_steps - 1)
     y = np.real(lambda_M)
 
     sns.set(style="darkgrid")
@@ -19,7 +18,7 @@ def lambda_curve(lambda_M, num_steps):
     plt.show()
 
 
-def infection_curve(num_steps, infected_agents):
+def infection_curve(num_steps, agents_num, sites_num, recovery_rate, infected_agents):
     """
 
     Args:
@@ -44,7 +43,7 @@ def infection_curve(num_steps, infected_agents):
     plt.xticks(fontsize=20)
     plt.ylabel('Cumulated infected agents', fontsize=25)
     plt.xticks(fontsize=20)
+    plt.text(-5, 1750, "Time: " + str(num_steps) + '\n' + "Agents: " + str(agents_num) + '\n' +
+             "Sites: " + str(sites_num) + '\n' + "Recovery Rate: " + str(recovery_rate),
+             fontsize=20, bbox={'facecolor': 'white', 'pad': 10, 'alpha': 0.5})
     plt.show()
-
-
-
