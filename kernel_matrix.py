@@ -42,7 +42,7 @@ def largest_eigenvalue(beta, gamma, trajectories, sites_num, num_steps):
 
     largest_eigenvalues = []
     for t in range(1, num_steps):
-        print("Largest eigenvalue " + "(" + str(t) + " ," + str(0) + ")")
+        # print("Largest eigenvalue " + "(" + str(t) + " ," + str(0) + ")")
         kernel = np.zeros((sites_num, sites_num))
         for a in range(sites_num):
             for b in range(sites_num):

@@ -31,7 +31,7 @@ def calculate_states(agents_num, sites_num, gamma, beta, risk, trajectories, sha
     # q_t[0] = q_t[0] / np.sum(q_t[0])
 
     for t in range(1, num_steps):
-        print("Calculating state at " + str(t))
+        # print("Calculating state at " + str(t))
         # sites agents go at time t
         trajectories_till_t = trajectories[:, 1:t+1]
         for i in range(agents_num):

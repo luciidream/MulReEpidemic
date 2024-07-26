@@ -1,5 +1,5 @@
 import sys
-
+import time
 import numpy as np
 import networkx as nx
 import pagerank_with_damping_factor as tfm
@@ -30,8 +30,11 @@ def row_normalize(matrix):
 
 
 if __name__ == '__main__':
+    # --------------------------------------MULTI ENTRY SETTING--------------------------------------
+    multi_entry_prefix = sys.argv[1]
     # ---------------------------Initiation and Generation of Trajectories---------------------------
     # N --- number of agents
+    start_time = time.time()
     N = 2000
     M = 50
     # M --- number of sites
@@ -73,12 +76,20 @@ if __name__ == '__main__':
     risk_t = row_normalize(test[2])
 
     lambda_M = km.largest_eigenvalue(beta, gamma, trajectories, M, num_steps)
-    np.save("lambda_M.npy", lambda_M)
+    # multi entry file saving
+    np.save(f'{multi_entry_prefix}_lambda_M.npy', lambda_M)
+    # single entry file saving
+    # np.save('lambda_M.npy', lambda_M)
     # ----------------------------------------SI Transmission----------------------------------------
     # a dictionary --- time —————— agents infected
     recovery_rate = 0.02
     infected_agent = tp.si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N,
                                                 recovery_rate, 20, num_steps)
-    np.save("infected_agent.npy", infected_agent)
+    # multi entry file saving
+    np.save(f'{multi_entry_prefix}_infected_agent.npy', infected_agent)
+    # single entry file saving
+    # np.save('infected_agent.npy', infected_agent)
+    endtime = time.time()
+    print(f'Finished in {endtime - start_time:0.2f} seconds')
 
 

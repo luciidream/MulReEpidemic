@@ -18,22 +18,19 @@ def lambda_curve(lambda_M, num_steps):
     plt.show()
 
 
-def infection_curve(num_steps, agents_num, sites_num, recovery_rate, infected_agents):
+def infection_curve(num_steps, agents_num, sites_num, recovery_rate, infected_agents, order=-1):
     """
 
     Args:
         num_steps: the time of infection
-        infected_agents: a dictionary t---number of infected agents
-                         the number of agents infected at each time step
+        infected_agents: an array
 
     Returns:
 
     """
     x = np.linspace(1, len(infected_agents), len(infected_agents))
     x.astype(np.int64)
-    y = np.zeros(len(infected_agents))
-    for t, n in infected_agents.items():
-        y[t] = len(n)
+    y = infected_agents
 
     sns.set(style="darkgrid")
     plt.figure(figsize=(16, 12), dpi=400)
@@ -44,6 +41,7 @@ def infection_curve(num_steps, agents_num, sites_num, recovery_rate, infected_ag
     plt.ylabel('Cumulated infected agents', fontsize=25)
     plt.xticks(fontsize=20)
     plt.text(-5, 1750, "Time: " + str(num_steps) + '\n' + "Agents: " + str(agents_num) + '\n' +
-             "Sites: " + str(sites_num) + '\n' + "Recovery Rate: " + str(recovery_rate),
+             "Sites: " + str(sites_num) + '\n' + "Recovery Rate: " + str(recovery_rate) + '\n' +
+             "Order: " + str(order),
              fontsize=20, bbox={'facecolor': 'white', 'pad': 10, 'alpha': 0.5})
     plt.show()

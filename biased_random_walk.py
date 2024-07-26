@@ -65,7 +65,7 @@ def generate_trajectories(N, agents_network, sites_network, bias_matrix, relatio
     """Generate trajectories for each agent."""
     trajectories = np.zeros((N, num_steps))
     for step in range(num_steps):
-        print("Walking at " + str(step))
+        # print("Walking at " + str(step))
         for agent_id in range(N):
             if step == 0:
                 current_node = random.choice(list(sites_network.nodes()))

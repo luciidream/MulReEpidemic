@@ -10,9 +10,9 @@ def si_agents_infected_at_t(agents_network, p_t, q_t, trajectories, N, recovery_
         infected_agent_till_t = infected_agent[t - 1]
         infected_agent_till_t = infected_agent_till_t[recovery_rate <=
                                                       np.random.uniform(0, 1, len(infected_agent_till_t))]
-        print("Transmission at " + str(t) + " Infected agent: " + str(len(infected_agent_till_t)) + " / " + str(N))
+        # print("Transmission at " + str(t) + " Infected agent: " + str(len(infected_agent_till_t)) + " / " + str(N))
         if len(infected_agent_till_t) == N:
-            print("*****WASTED*****")
+            # print("*****WASTED*****")
             break
         for s in np.unique(agents_location):
             agents_at_s = np.where(agents_location == s)[0]
